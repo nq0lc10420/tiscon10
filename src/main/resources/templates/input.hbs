@@ -27,38 +27,37 @@
         <fieldset>
           <h2 class="sub-title">ご本人について</h2>
           <label>
-            氏名
+            氏名（例：山田 太郎）
             <input type="text" name="kanjiName" value="{{userOrderForm.kanjiName}}"/>
           </label>
           <label>
-            シメイ（フリガナ）
+            フリガナ（例：ヤマダ タロウ）
             <input type="text" name="kanaName" value="{{userOrderForm.kanaName}}"/>
           </label>
-          <label>
-            生年月日
+          <label> 
+            生年月日（例：2025/01/01）
             <input type="text" name="dateOfBirth" value="{{userOrderForm.dateOfBirth}}"/></label>
           <label>
-            住所
+            住所（例：東京都江東区12-345）
             <input type="text" name="address" value="{{userOrderForm.address}}"/>
           </label>
           <label>
-            電話番号
+            電話番号（例：08012345678）
             <input type="text" name="tel" value="{{userOrderForm.tel}}"/>
           </label>
           <label>
-            メールアドレス
+            メールアドレス（例：sample@tis.com）
             <input type="text" name="email" value="{{userOrderForm.email}}"/>
           </label>
         </fieldset>
         <fieldset>
           <h2 class="sub-title">お勤め先・ご家族について</h2>
           <h3 class="caption">配偶者有無</h3>
-          {{#each marriedTypes}}
-            <label>
-              <input type="radio" name="marriedType" value="{{this.code}}" {{#eq this.code userOrderForm.marriedTypeEnum.code}}checked{{/eq}}>
-              {{this.label}}
-            </label>
-          {{/each}}
+          <select name="marriedType">
+            {{#each marriedTypes}}
+              <option value="{{this.code}}" {{#eq this.code userOrderForm.marriedTypeEnum.code}}selected{{/eq}}>{{this.label}}</option>
+            {{/each}}
+          </select>
           <h3 class="caption">ご職業</h3>
           {{#each jobTypes}}
             <label>

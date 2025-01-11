@@ -3,7 +3,6 @@ package com.tiscon10.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import com.tiscon10.service.EstimateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +18,7 @@ import com.tiscon10.code.MarriedType;
 import com.tiscon10.code.TreatedType;
 import com.tiscon10.domain.InsuranceOrder;
 import com.tiscon10.form.UserOrderForm;
+import com.tiscon10.service.EstimateResult;
 import com.tiscon10.service.EstimateService;
 
 /**
@@ -56,10 +56,11 @@ public class EstimateController {
 
         // 初期表示用に、空の入力フォームを用意
         model.addAttribute("userOrderForm", emptyForm());
-        // 全ての保険種別をプルダウン表示用に用意
+        // 全ての保険種別、配偶者をプルダウン表示用に用意
         model.addAttribute("insurances", estimateService.getInsurances());
-        // 配偶者有無、ご職業、病歴有無の全選択肢をラジオボタン表示用に用意
         model.addAttribute("marriedTypes", MarriedType.values());
+       
+        // ご職業、病歴有無の全選択肢をラジオボタン表示用に用意
         model.addAttribute("jobTypes", JobType.values());
         model.addAttribute("treatedTypes", TreatedType.values());
 
@@ -137,8 +138,9 @@ public class EstimateController {
     @PostMapping(value = "estimate", params = "backToInput")
     String backToInput(UserOrderForm userOrderForm, Model model) {
 
-        // 全ての保険種別をプルダウン表示用に用意
+        // 全ての保険種別、配偶者をプルダウン表示用に用意
         model.addAttribute("insurances", estimateService.getInsurances());
+       
 
         // 配偶者有無、ご職業、病歴有無の選択肢をプルダウン表示用に用意
         model.addAttribute("marriedTypes", MarriedType.values());
